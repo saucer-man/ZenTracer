@@ -269,7 +269,8 @@ def start_trace(app):
     black_s = str(app.black_regex_list).replace('u\'', '\'')
     device.on("child-added", _on_child_added)
     application = device.get_frontmost_application()
-    target = 'Gadget' if application.identifier == 're.frida.Gadget' else application.identifier
+    # target = 'Gadget' if application.identifier == 're.frida.Gadget' else application.identifier
+    target = application.name
     for process in device.enumerate_processes():
         if target in process.name:
             _attach(process.name)
